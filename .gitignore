@@ -1,2 +1,5 @@
-# Ignorar arquivos de configuração e segredos
+# Ignorar arquivos de configuração
 .env
+
+# Ignorar arquivos de cache Python
+*.pyc
