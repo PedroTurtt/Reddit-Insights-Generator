@@ -1,5 +1,6 @@
 import json
 
+# Função responsavel pela criação do JSON
 def save_json(filename, info):
     try:
         with open(filename, "w", encoding="utf-8") as f:
@@ -9,6 +10,7 @@ def save_json(filename, info):
     except Exception as e:
         print(f"Erro ao gerar Json: {e}")
 
+# Função responsavel pela leitura do JSON
 def load_json(file_name_to_load):
     try:
         with open(file_name_to_load, "r", encoding="utf-8") as f:
