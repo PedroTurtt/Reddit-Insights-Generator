@@ -3,7 +3,6 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-print(os.environ.get("REDDIT_USER_AGENT"))
 
 reddit = praw.Reddit(
     client_id=os.environ.get("REDDIT_CLIENT_ID"),
