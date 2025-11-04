@@ -1,6 +1,7 @@
 import  praw
 import os
 from dotenv import load_dotenv
+from save_to_json import save_json
 
 load_dotenv()
 
@@ -12,20 +13,43 @@ reddit = praw.Reddit(
     password=os.environ.get("REDDIT_PASSWORD")
 )
 
-subreddit_choice = input("Qual Subreddit deseja pesquisar?: ")
-subreddit = reddit.subreddit(subreddit_choice)
+subreddit = reddit.subreddit("maconha_legal") #reddit.subreddit(subreddit_choice)
+busca = "associação" #input("O que deseja procurar?: ")
+limit_number = input('Quantidade de posts que deseja buscar: ')
 
-busca = input("O que deseja procurar?: ")
+collected_info = []
+print('Iniciando a busca: ')
 
-for submission in subreddit.search(busca, sort="new", limit=3):
-    print(f"ID: {submission.id}")
-    print(f"Título: {submission.title}")
-    print(f"Autor: {submission.author}")
-    print(submission.selftext)
-    for comment in submission.comments:
-        print(f"Comentário: {comment.body}")
+
+for submission in subreddit.search(busca, sort="relevance", limit=3):
+
+    post_info = {
+        "id": submission.id,
+        "titulo": submission.title,
+        "autor": str(submission.author),
+        "texto_post": submission.selftext,
+        "comentarios": []
+    }
+
+    print(f"coletando post: {submission.title}")
+
+    submission.comments.replace_more(limit=0)
+  
+    for comment in submission.comments.list():
+        comnetario_info = {
+            "autor": str(comment.author),
+            "comentario": comment.body,
+            "respostas": []
+        }
         for reply in comment.replies:
-            print(f"   ↳ Resposta: {reply.body}")
-    print("-" * 40)
+            resposta_info = {
+            "autor": str(reply.author),
+            "texto": reply.body
+            }
+            comnetario_info["respostas"].append(resposta_info)
 
+        post_info["comentarios"].append(comnetario_info)
 
+    collected_info.append(post_info)
+
+save_json("dados_reddit.json", collected_info)
