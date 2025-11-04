@@ -13,9 +13,9 @@ reddit = praw.Reddit(
     password=os.environ.get("REDDIT_PASSWORD")
 )
 
-subreddit = reddit.subreddit("maconha_legal") #reddit.subreddit(subreddit_choice)
-busca = "associação" #input("O que deseja procurar?: ")
-limit_number = input('Quantidade de posts que deseja buscar: ')
+subreddit_choice = input("Digite o nome do Subreddit desejado: ")
+subreddit = reddit.subreddit(subreddit_choice)
+busca = input("O que deseja procurar?: ")
 
 collected_info = []
 print('Iniciando a busca: ')
