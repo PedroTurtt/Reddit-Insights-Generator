@@ -14,6 +14,7 @@ def load_json(file_name_to_load):
         with open(file_name_to_load, "r", encoding="utf-8") as f:
             dados = json.load(f)
             print(f"Dados carregados com sucesso!")
+            return dados
     except FileNotFoundError:
         print(f"Erro, arquivo não foi encontrado")
         return None
