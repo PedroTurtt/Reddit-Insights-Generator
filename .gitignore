@@ -3,3 +3,6 @@
 
 # Ignorar arquivos de cache Python
 *.pyc
+
+# Ignorar arquivos gerado pelo script
+dados_reddit.json
