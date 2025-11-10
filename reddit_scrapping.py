@@ -2,6 +2,7 @@ import praw
 import os
 from dotenv import load_dotenv
 from json_manager import save_json
+import sys
 
 def case_match(value):
     match value:
@@ -35,7 +36,16 @@ def reddit_parameters():
     busca = input("O que deseja procurar?: \n")
 
     # Define a quantidade de posts que vão ser salvos no JSON
-    limit_number = int(input("Quantidade de posts para salvar: \n"))
+    print("Quantidade de posts para salvar:")
+    limit_input = input()
+    try:
+        limit_number = int(limit_input)
+        if limit_number <= 0:
+            print(f"Valor digitado não é válido: '{limit_number}'.")
+            sys.exit(1)
+    except ValueError:
+        print(f"Valor digitado não é válido: '{limit_input}'.")
+        sys.exit(1)
     
     # Define a ordenação, convertendo o valor em int, retornando relevancia como padrão caso imput seja errado.
     print(f"Filtrar por:\n\n• 1-Relevância\n• 2-Em destaque\n• 3-Mais votados\n• 4-Mais novos")
