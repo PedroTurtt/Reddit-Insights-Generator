@@ -42,7 +42,7 @@ Você precisará de:
 
 1.  **Chave da API Gemini:** Obtenha no [Google AI Studio](https://ai.google.dev/gemini-api/docs/api-key).
 2.  **Credenciais do Reddit:** Crie um aplicativo [aqui](https://www.reddit.com/prefs/apps/) para obter `client_id` e `client_secret`.
-      * *Nota:* As credenciais `REDDIT_USERNAME` e `REDDIT_PASSWORD` são usadas para autenticação com o PRAW.
+      * *Nota:* As credenciais `REDDIT_USERNAME` e `REDDIT_PASSWORD` são usadas para autenticação com o PRAW, além disso, não utilize autentificação de 2 fatores.
 
 O arquivo `.env` deve se parecer com este:
 
