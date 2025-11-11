@@ -1,7 +1,8 @@
 from reddit_scrapping import reddit_parameters
 from json_manager import load_json
-from llm_file import resumo_llm
+from local_llm import gerar_resposta
 import sys
+import json
 
 # Aqui puxa a função do reddit_scrapping.py e gera o arquivo JSON
 reddit_parameters()
@@ -24,7 +25,9 @@ def main():
     print(f"Dados carregados com sucesso. Total de posts: {len(dados_carregados)}")
 
     print("-" * 30)
-    sucesso = resumo_llm(dados_carregados)
+
+    print("Gerando resumo com modelo LLM")
+    sucesso = gerar_resposta(dados_carregados, arquivo_saida="resumo.txt")
 
     if sucesso:
         print("\nProcesso concluído com sucesso!")
